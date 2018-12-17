@@ -1,49 +1,31 @@
-window.onload = pageLoad();
-
-function pageLoad(){
-inputValue = "1";
-}
+// Starting value
+// Note: This is just an integer. No need for arrays.
+var count = 0;
 
 document.addEventListener("DOMContentLoaded", function(){
- 	var myForm = document.querySelector("#my-form");
-		myForm.addEventListener("submit",function(e) {
-		e.preventDefault();
-
 	document.getElementById("plus").addEventListener("click", clickPlus);
 	document.getElementById("minus").addEventListener("click", clickMinus);
+});
 
-var inputValue = document.getElementById('input').value;
-var outputValue = document.getElementById('output');
-var currentOutput = [];
-
-if(outputValue.innerText === ''){
-	//var currentOutput = 0;
-	outputValue.innerText = inputValue;
-	//currentOutput = inputValue;
-}
-
-else {
-	clickPlus(inputValue);
-	clickMinus(inputValue);
-}
-
-function clickPlus(outputValue, inputValue){
-	var plusResult = Number(outputValue) + inputValue;
-	currentOutput.push(plusResult);
-	outputValue.innerText = currentOutput;
+function clickPlus(){
+  // Ideally, we have error checking here in case user puts in a non-number
+  // We can assume they are nice for this purpose!
+  var inputValue = Number(document.getElementById('input').value);
+	count = count + inputValue;
+	updateDisplay();
 }
 
 function clickMinus(outputValue, inputValue){
-	var minusResult = Number(outputValue) - inputValue;
-	currentOutput.push(plusResult);
-	outputValue.innerText = currentOutput;	
-
-
+  var inputValue = Number(document.getElementById('input').value);
+	count = count - inputValue;
+	updateDisplay();
 }
 
-})
+function updateDisplay(){
+  document.getElementById('output').textContent = count;
 
-}); 
+  // TODO: Add logic to change color to red if count is less than 0
+}
 
 
 
